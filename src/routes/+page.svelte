@@ -179,13 +179,13 @@
 <style>
     @keyframes sine {
         0% {
-            transform: translateY(125px);
+            transform: translateY(250px);
         }
         50% {
-            transform: translateY(calc(125px - 20px));
+            transform: translateY(calc(250px - 20px));
         }
         100% {
-            transform: translateY(125px);
+            transform: translateY(250px);
         }
     }
 
@@ -204,7 +204,6 @@
         isolation: isolate;
 
         .child {
-            margin-bottom: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
