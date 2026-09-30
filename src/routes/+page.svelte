@@ -164,7 +164,7 @@
                             
                             <div class="repoDetails">
                                 <span class="{repo.stars === 0 ? 'zeroStars' : ''}">{repo.stars} stars</span>
-                                <span class="{repo.stars === 0 ? 'zeroStars' : ''}">{repo.forks} forks</span>
+                                <span class="{repo.forks === 0 ? 'zeroStars' : ''}">{repo.forks} forks</span>
                             </div>
                         </a>
                         {/each}
