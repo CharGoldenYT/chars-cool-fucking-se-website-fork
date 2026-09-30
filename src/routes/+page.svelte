@@ -225,7 +225,7 @@
             height: 100%;
             opacity: 0.05;
             z-index: -1;
-            background: url('./assets/checkers.png');
+            background: url('/assets/checkers.png');
             animation: backdropillusion 5s linear infinite;
         }
     }
