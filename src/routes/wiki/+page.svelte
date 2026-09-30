@@ -132,14 +132,16 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
+        padding: 10px;
         @media screen and (max-width: 768px) { flex-direction: column; }
 
         .sidebar {
             min-width: 250px;
             padding: 15px;
             overflow-y: auto;
-            @media screen and (min-width: 768px) { border-right: 1px solid var(--border); }
             background-color: rgba(255, 255, 255, 0.025);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
 
             h3 { margin-top: 0; }
 
@@ -171,12 +173,14 @@
             flex: 3;
             padding: 20px;
             overflow-y: auto;
+            padding-top: 75px;
 
             .prose {
                 :global(h1) { font-size: 2rem; margin-bottom: 1rem; }
                 :global(p) { margin-bottom: 1rem; line-height: 1.6; }
                 :global(code) { background: rgba(0, 0, 0, 0.5); border-radius: 4px; }
                 :global(a) { color: aqua; }
+                :global(hr) { opacity: 0.1; }
                 :global(pre) {
                     background: rgba(0, 0, 0, 0.5);
                     border-radius: 4px;
@@ -191,7 +195,7 @@
                     border-radius: 0;
                 }
                 :global(h1, h2, h3, h4, h5, h6) {
-                    border-bottom: 1px solid rgba(255,255, 255, 0.2);
+                    border-bottom: 1px solid rgba(255,255, 255, 0.1);
                     padding-bottom: 0.5rem;
                 }
             }
