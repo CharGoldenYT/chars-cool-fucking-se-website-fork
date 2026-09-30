@@ -32,8 +32,8 @@
     }
 
     let downloadButtons = $derived([
-      { name: `Download Latest ${engineVersionBuild}`, url: 'https://github.com/Team-SolarEngine/Solar-Engine-Archive/releases/latest' },
-      { name: `Go to GitHub Repository`, url: 'https://github.com/Team-SolarEngine/Solar-Engine-Archive' },
+      { name: `Download Engine ${engineVersionBuild}`, url: 'https://github.com/Team-SolarEngine/Solar-Engine-Archive/releases/latest' },
+      { name: `Go to Engine Repository`, url: 'https://github.com/Team-SolarEngine/Solar-Engine-Archive' },
       { name: `Go to GitHub Organization`, url: 'https://github.com/Team-SolarEngine' },
       { name: `Join Discord Server`, url: 'https://discord.gg/RaHmP5fgyA' },
     ])
@@ -42,7 +42,7 @@
       { name: 'Daveberry', url: 'https://codedave.pages.dev/', role: 'Former developer. Creator of the engine, and lead developer of the website.', avatar: 'https://codedave.pages.dev/assets/images/Daveberry%20Wave.png', circlePFP: false },
       { name: 'VideoBot', url: 'https://video-bot.netlify.app/', role: 'Lead developer. Creator of the engine.', avatar: 'https://video-bot.netlify.app/images/VideoBot.png', circlePFP: true },
       { name: 'BaranMuzu', url: 'https://baranmuzu.netlify.app/', role: 'Invited former developer.', avatar: 'https://baranmuzu.netlify.app/assets/images/baransleep.png', circlePFP: false },
-      { name: 'Char', url: 'https://vschar-official.com/', role: 'Invited lead developer.', avatar: 'https://avatars.githubusercontent.com/u/73309364?v=4?s=400', circlePFP: false },
+      { name: 'Char', url: 'https://vschar-official.com/', role: 'Invited lead developer.', avatar: 'https://avatars.githubusercontent.com/u/73309364?v=4?s=400', circlePFP: true },
     ]
 
     const mainRepos = [
@@ -62,18 +62,43 @@
 
 <main>
     <Topbar page={page}/>
-    
+
+    <div class="hero">
+        <div class="child">
+            <img src="assets/icon.png" width="150">
+            <h1>Solar FNF Team</h1>
+            <span>The team that <i>tries</i> to do it's thing.</span>
+        </div>
+
+        <div class="bottom">
+            scroll down to see what we do!
+        </div>
+    </div>
+
     <div class="main">
-        <div class="mainContent">
+        <div class="mainContent background">
             <section class="info">
                 <div class="left">
-                    <h1>Welcome to Solar Engine</h1>
+                    <h1>The FNF Solar Team!</h1>
                 </div>
                 <div class="right">
                     <img src="/assets/arrowDOWN0.png" alt="Arrow Down" width="100" height="100"/>
-                    <section>
-                        <p>Solar Engine is a FNF Engine forked from the base game.</p>
-                        <p>0.6 is the last major version of the Psych Fork, 1.0+ is forked from 0.2.8</p>
+                    <section style="display: flex; flex-direction: column; gap: 15px;">
+                        <span>
+                            The FNF Solar Team
+                            <span class="small">formerly known as Universe Team</span>
+                            is a team of people who wants to make FNF modding a <i>little</i> better.
+                        </span>
+
+                        <span>
+                            That's not to say we're different from Codename, Psych, and V-slice. We just
+                            want to make an engine that has customization and <i>some</i> new features.
+                        </span>
+
+                        <span>
+                            This team also expands other than <i>just</i> making a FNF engine! We make
+                            a dedicated FNF launcher too. Which is supported with Gamebanana!
+                        </span>
                     </section>
                 </div>
             </section>
@@ -90,7 +115,7 @@
             </section>
         </div>
         
-        <div class="meetthedevs">
+        <div class="meetthedevs background">
             <div class="title">
                 <span class="bigboi">Meet the devs!</span>
                 <span>The developers and contributors behind Solar Engine.</span>
@@ -110,7 +135,7 @@
             </div>
         </div>
 
-        <div class="githubRepos">
+        <div class="githubRepos background">
             <div class="title">
                 <span class="bigboi">GitHub Repositories</span>
                 <span>The repositories with the higher opacity are the ones that are activly being maintained.</span>
@@ -152,14 +177,72 @@
 </main>
 
 <style>
+    @keyframes sine {
+        0% {
+            transform: translateY(125px);
+        }
+        50% {
+            transform: translateY(calc(125px - 20px));
+        }
+        100% {
+            transform: translateY(125px);
+        }
+    }
+
+    @keyframes backdropillusion {
+        to { background-position: top 118px left 118px; }
+    }
+
+    .hero {
+        background: linear-gradient(to bottom, #191919, #222);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        position: relative;
+        isolation: isolate;
+
+        .child {
+            margin-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateY(125px);
+            animation: sine 2s ease-in-out infinite;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: -1;
+            background: url('./assets/checkers.png');
+            animation: backdropillusion 5s linear infinite;
+        }
+    }
+
     .main {
+        --margin_from_others: 10px;
         margin-bottom: 20px;
+        padding: 10px;
+
         .mainContent {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            
+            flex-direction: column;
+
             .info {
+                margin-bottom: 10px;
+
                 .right {
                     display: flex;
                     gap: 15px;
@@ -172,7 +255,8 @@
             
             .downloads {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+                @media screen and (max-width: 768px) { flex-direction: column; }
                 justify-content: center;
                 gap: 10px;
                 
@@ -182,7 +266,8 @@
                     text-align: center;
                     background-color: rgba(0, 0, 0, 0.25);
                     padding: 10px;
-                    border-radius: 5px;
+                    border-radius: 20px;
+                    border-top: 1px solid var(--border);
                     transition:
                         background-color 100ms linear,
                         scale 100ms linear;
@@ -194,6 +279,7 @@
         }
 
         .meetthedevs {
+            margin-top: var(--margin_from_others);
             .devs {
                 display: flex;
                 flex-direction: row;
@@ -221,6 +307,7 @@
         }
 
         .githubRepos {
+            margin-top: var(--margin_from_others);
             .repoGroup {
                 display: flex;
                 flex-wrap: wrap;
@@ -238,9 +325,10 @@
                     color: white;
                     background-color: var(--background-rc);
                     padding: 10px 15px;
-                    border-radius: 10px;
+                    border-radius: 20px;
                     transition: border 0.1s ease;
-                    border: 2px solid var(--border-rc);
+                    border-left: 2px solid var(--border-rc);
+                    border-right: 2px solid var(--border-rc);
                     width: 300px !important;
                     @media screen and (max-width: 768px) { width: 100% !important; }
                     display: flex;
@@ -255,7 +343,8 @@
                         --border-rc: var(--secondary);
                         --red-rc: rgba(225, 0, 0, 1);
                         
-                        border: 2px solid var(--border-rc);
+                        border-left: 2px solid var(--border-rc);
+                        border-right: 2px solid var(--border-rc);
                         opacity: 1;
                     }
 
@@ -270,9 +359,9 @@
 
                         span {
                             background-color: var(--background-rc);
-                            border: 2px solid var(--border-rc);
+                            border-bottom: 5px solid var(--border-rc);
                             padding: 5px 10px;
-                            border-radius: 5px;
+                            border-radius: 20px;
                             transition: border 0.1s ease;
                         } span:last-child { transition-delay: 0.1s; }
                         .zeroStars { border-color: var(--red-rc); }
@@ -315,5 +404,17 @@
         .bigboi {
             font-size: 2rem;
         }
+    }
+
+    .background {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 20px;
+        border-top: 1px solid var(--border);
+    }
+
+    .small {
+        font-size: 0.5rem;
+        opacity: 0.5;
     }
 </style>
