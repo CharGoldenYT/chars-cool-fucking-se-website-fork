@@ -416,9 +416,4 @@
         border-top: 1px solid var(--border);
     }
     .pad { padding: 10px; }
-
-    .small {
-        font-size: 0.5rem;
-        opacity: 0.5;
-    }
 </style>

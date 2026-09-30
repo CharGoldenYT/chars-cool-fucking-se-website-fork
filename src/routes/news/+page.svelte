@@ -67,7 +67,7 @@
 
     <div class="main">
         <div class="sidebar">
-            <h3>News</h3>
+            <h3>News <span class="small">scrollable...</span></h3>
             {#if loadGetNews}
                 <p>Loading...</p>
             {:else if errorGetNews}

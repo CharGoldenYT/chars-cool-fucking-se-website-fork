@@ -88,7 +88,7 @@
 
     <div class="main">
         <div class="sidebar">
-            <h3>Wiki</h3>
+            <h3>Wiki <span class="small">scrollable...</span></h3>
             {#if loadList}
                 <p>Loading...</p>
             {:else if errorList}
