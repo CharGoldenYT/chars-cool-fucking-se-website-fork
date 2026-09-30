@@ -112,7 +112,7 @@
         min-height: 0;
         overflow: hidden;
         padding: 10px;
-        @media screen and (max-width: 768px) { flex-direction: column; }
+        @media screen and (max-width: 768px) { flex-direction: column; padding-top: 75px; }
 
         .sidebar {
             min-width: 250px;
@@ -152,9 +152,10 @@
             flex: 3;
             padding: 20px;
             overflow-y: auto;
-            padding-top: 75px;
+            @media screen and (min-width: 768px) { padding-top: 75px; }
 
             .prose {
+                overflow-wrap: break-word;
                 :global(h1) { font-size: 2rem; margin-bottom: 1rem; }
                 :global(p) { margin-bottom: 1rem; line-height: 1.6; }
                 :global(code) { background: rgba(0, 0, 0, 0.5); border-radius: 4px; }
