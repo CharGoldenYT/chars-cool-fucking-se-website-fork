@@ -58,11 +58,11 @@
                 background-color: rgba(40, 40, 40, 0.25);
 
                 border-top: 2px solid var(--border);
-                border-bottom: none;
+                border-bottom: 2px solid transparent;
             } a:hover {
                 scale: 1.1;
 
-                border-top: none;
+                border-top: 2px solid transparent;
                 border-bottom: 2px solid var(--border);
             } a.active {
                 background-color: rgba(40, 40, 40, 0.75);

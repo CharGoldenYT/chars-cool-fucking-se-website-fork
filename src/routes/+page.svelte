@@ -76,7 +76,7 @@
     </div>
 
     <div class="main">
-        <div class="mainContent background">
+        <div class="mainContent pad">
             <section class="info">
                 <div class="left">
                     <h1>The FNF Solar Team!</h1>
@@ -115,7 +115,7 @@
             </section>
         </div>
         
-        <div class="meetthedevs background">
+        <div class="meetthedevs pad">
             <div class="title">
                 <span class="bigboi">Meet the devs!</span>
                 <span>The developers and contributors behind Solar Engine.</span>
@@ -135,7 +135,7 @@
             </div>
         </div>
 
-        <div class="githubRepos background">
+        <div class="githubRepos pad">
             <div class="title">
                 <span class="bigboi">GitHub Repositories</span>
                 <span>The repositories with the higher opacity are the ones that are activly being maintained.</span>
@@ -265,14 +265,18 @@
                     text-align: center;
                     background-color: rgba(0, 0, 0, 0.25);
                     padding: 10px;
+
                     border-radius: 20px;
-                    border-top: 1px solid var(--border);
-                    transition:
-                        background-color 100ms linear,
-                        scale 100ms linear;
+                    border-top: 2px solid var(--border);
+                    border-bottom: 2px solid transparent;
+
+                    transition: all 200ms ease-in-out;
                 } a:hover {
                     background-color: rgba(0, 0, 0, 0.5);
                     scale: 1.05;
+
+                    border-top: 2px solid transparent;
+                    border-bottom: 2px solid var(--border);
                 }
             }
         }
@@ -411,6 +415,7 @@
         border-radius: 20px;
         border-top: 1px solid var(--border);
     }
+    .pad { padding: 10px; }
 
     .small {
         font-size: 0.5rem;
