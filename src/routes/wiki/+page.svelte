@@ -23,6 +23,7 @@
     
     let wikiContent = $state(''); 
     let wikiList = $state([]);
+    let currentWiki = $state('');
 
     let loaded = $state();
 
@@ -74,6 +75,7 @@
 
     async function selectWiki(file) {
         const data = await getWikiFile(file);
+        currentWiki = file;
         wikiContent = data.content;
     }
     
@@ -96,7 +98,7 @@
             {:else}
                 <div class="fileList">
                     {#each wikiList as file}
-                        <button class="fileButton" onclick={() => selectWiki(file)}>
+                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file)}>
                             {file.replace('.md', '')}
                         </button>
                     {/each}
@@ -159,12 +161,17 @@
                     padding: 8px;
                     cursor: pointer;
                     transition: 0.2s;
-                    border-radius: 4px;
+                    border-radius: 10px;
                     font-family: funkin;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.2);
                     }
+                }
+
+                .active {
+                    border-left: 2px solid white;
+                    border-right: 2px solid white;
                 }
             }
         }

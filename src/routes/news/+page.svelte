@@ -23,6 +23,7 @@
     
     let newsMarkdown = $state(''); 
     let newsList = $state([]);
+    let currentNews = $state('');
 
     async function getNews() {
         try {
@@ -54,6 +55,7 @@
 
     async function selectNews(file) {
         const data = await getNewsFile(file);
+        currentNews = file;
         newsMarkdown = data.content;
     }
     
@@ -75,7 +77,7 @@
             {:else}
                 <div class="fileList">
                     {#each newsList as article}
-                        <button class="fileButton" onclick={() => selectNews(article.file)}>
+                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file)}>
                             {article.file.replace('.md', '')}
                         </button>
                     {/each}
@@ -138,12 +140,17 @@
                     padding: 8px;
                     cursor: pointer;
                     transition: 0.2s;
-                    border-radius: 4px;
+                    border-radius: 10px;
                     font-family: funkin;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.2);
                     }
+                }
+
+                .active {
+                    border-left: 2px solid white;
+                    border-right: 2px solid white;
                 }
             }
         }
