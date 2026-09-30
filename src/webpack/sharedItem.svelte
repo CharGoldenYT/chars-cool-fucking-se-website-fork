@@ -292,7 +292,11 @@
                         outline: none;
 
                         &:hover { cursor: pointer; }
-                        &.active { opacity: 1; }
+                        &.active {
+                            opacity: 1;
+                            border-left: 2px solid white;
+                            border-right: 2px solid white;
+                        }
                     }
                 }
             }
