@@ -52,6 +52,7 @@
     }
     
     .main {
+        padding-top: 6rem;
         display: flex;
         flex-direction: column;
         gap: 25px;

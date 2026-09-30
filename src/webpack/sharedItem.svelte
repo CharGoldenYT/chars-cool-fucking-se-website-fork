@@ -77,8 +77,8 @@
     </div>
 
     {#if doPopOver}
-    <div class="popoverModule">
-        <div class="popoverUI">
+    <div class="popoverModule" onclick={togglePopover}>
+        <div class="popoverUI" onclick={(e) => e.stopPropagation()}>
             <span class="closeButton" onclick={togglePopover}>X</span>
 
             <img src={data.banner} alt={data.config?.title} class="banner"/>
@@ -152,8 +152,8 @@
         gap: 5px;
 
         .pill {
-            background-color: var(--si-bg);
-            border: 2px solid var(--si-border);
+            border-left: 2px solid var(--si-border);
+            border-right: 2px solid var(--si-border);
             padding: 5px;
             border-radius: 5px;
         }
@@ -161,7 +161,7 @@
 
     .sharedItem {
         background-color: rgba(0, 0, 0, 0.25);
-        border: 2px solid rgba(0, 0, 0, 0.5);
+        border: 2px solid transparent;
         padding: 15px 20px;
         width: 450px !important;
         border-radius: 10px;
@@ -170,7 +170,13 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        &:hover { border: 2px solid var(--primary); cursor: pointer; }
+        transition: border 100ms ease-in-out;
+
+        &:hover {
+            border-left: 2px solid var(--primary);
+            border-right: 2px solid var(--primary);
+            cursor: pointer;
+        }
         
         .important {
             display: flex;
@@ -210,13 +216,15 @@
             background-color: rgba(15, 15, 15);
             padding: 15px;
             border-radius: 10px;
-            border: 2px solid var(--primary);
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
             width: 800px !important;
             @media screen and (max-width: 768px) { max-width: 100% !important; }
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            scale: 0.85;
 
             .closeButton {
                 display: flex;
