@@ -28,7 +28,7 @@
 
     function get_loaded()
     {
-        let loaded = 'Welcome to the Solar Engine Wiki ';
+        let loaded = 'Welcome to the Solar Engine Wiki. ';
 
         if (window.innerWidth <= 768)
         {
@@ -39,7 +39,7 @@
             loaded += 'Click/Tap on the articles to the left to view them! ';
         }
 
-        loaded += '<br/>Just note, the example code looks to be broken, don\'t blame us!';
+        loaded += '<br/>Just note, the example code looks to be broken, don\'t blame us! Just refresh the page.';
 
         return loaded;
     }
