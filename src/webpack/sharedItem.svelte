@@ -162,9 +162,10 @@
     .sharedItem {
         background-color: rgba(0, 0, 0, 0.25);
         border: 2px solid transparent;
+        border-top: 2px solid rgba(255, 255, 255, 0.05);
         padding: 15px 20px;
         width: 450px !important;
-        border-radius: 10px;
+        border-radius: 20px;
         height: auto;
 
         display: flex;
@@ -215,7 +216,7 @@
         .popoverUI {
             background-color: rgba(15, 15, 15);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 20px;
             border-top: 2px solid var(--primary);
             border-bottom: 2px solid var(--primary);
             width: 800px !important;
@@ -261,7 +262,7 @@
                 overflow-y: auto;
                 padding: 0 10px;
                 width: 95%;
-                border-radius: 5px;
+                border-radius: 20px;
 
                 :global(a) { color: aqua; }
                 :global(img) {
