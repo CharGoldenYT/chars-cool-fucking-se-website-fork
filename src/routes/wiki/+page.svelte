@@ -182,6 +182,7 @@
                 :global(code) { background: rgba(0, 0, 0, 0.5); border-radius: 4px; }
                 :global(a) { color: aqua; }
                 :global(hr) { opacity: 0.1; }
+                :global(img) { @media screen and (max-width: 768px) { width: 100%; } }
                 :global(pre) {
                     background: rgba(0, 0, 0, 0.5);
                     border-radius: 4px;
