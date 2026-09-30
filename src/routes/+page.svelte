@@ -179,13 +179,13 @@
 <style>
     @keyframes sine {
         0% {
-            transform: translateY(250px);
+            transform: translateY(10rem);
         }
         50% {
-            transform: translateY(calc(250px - 20px));
+            transform: translateY(calc(10rem - 20px));
         }
         100% {
-            transform: translateY(250px);
+            transform: translateY(10rem);
         }
     }
 
