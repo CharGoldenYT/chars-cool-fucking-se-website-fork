@@ -89,6 +89,8 @@
             background-color: rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 20px;
+
+            @media screen and (max-width: 768px) { border-top: 2px solid var(--border); }
         }
 
         .buttons {
