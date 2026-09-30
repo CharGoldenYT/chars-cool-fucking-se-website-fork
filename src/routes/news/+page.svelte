@@ -66,7 +66,7 @@
     <Topbar page={page}/>
 
     <div class="main">
-        <div class="sidebar background">
+        <div class="sidebar">
             <h3>News</h3>
             {#if loadGetNews}
                 <p>Loading...</p>
@@ -83,7 +83,7 @@
             {/if}
         </div>
 
-        <div class="content background">
+        <div class="content">
             {#if loadNewsFile}
                 <p>Loading content...</p>
             {:else if errorNewsFile}

@@ -64,7 +64,7 @@
     <Topbar page={page}/>
     
     <div class="main">
-        <div class="mainContent background">
+        <div class="mainContent">
             <section class="info">
                 <div class="left">
                     <h1>Welcome to Solar Engine</h1>
@@ -90,7 +90,7 @@
             </section>
         </div>
         
-        <div class="background meetthedevs">
+        <div class="meetthedevs">
             <div class="title">
                 <span class="bigboi">Meet the devs!</span>
                 <span>The developers and contributors behind Solar Engine.</span>
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <div class="background githubRepos">
+        <div class="githubRepos">
             <div class="title">
                 <span class="bigboi">GitHub Repositories</span>
                 <span>The repositories with the higher opacity are the ones that are activly being maintained.</span>
