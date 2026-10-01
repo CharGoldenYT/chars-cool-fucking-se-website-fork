@@ -122,15 +122,13 @@
             </div>
             <div class="devs">
                 {#each contributors as contributor}
-                    <div class="dev">
-                        <a href={contributor.url}>
-                            <img src={contributor.avatar} alt={contributor.name} class:circlePFP={contributor.circlePFP} width="150">
-                            <h2 class={contributor.name.toLowerCase()}>
-                                {contributor.name}
-                            </h2>
-                            <p>{contributor.role}</p>
-                        </a>
-                    </div>
+                    <a class="dev" href={contributor.url}>
+                        <img src={contributor.avatar} alt={contributor.name} class:circlePFP={contributor.circlePFP} width="150">
+                        <h2 class={contributor.name.toLowerCase()}>
+                            {contributor.name}
+                        </h2>
+                        <p>{contributor.role}</p>
+                    </a>
                 {/each}
             </div>
         </div>
@@ -287,17 +285,22 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                gap: 10px;
+                gap: 15px;
                 flex-wrap: wrap;
                 
                 .dev {
                     width: 15rem;
                     text-align: center;
-                    
-                    a {
-                        text-decoration: none;
-                        color: white;
-                    } .circlePFP {
+                    text-decoration: none;
+                    color: white;
+
+                    transition: all 100ms linear;
+                    border-top: 2px solid transparent;
+                    border-bottom: 2px solid transparent;
+                    padding: 5px 0;
+                    border-radius: 20px;
+
+                    .circlePFP {
                         border-radius: 50%;
                     }
                     
@@ -305,6 +308,12 @@
                     .videobot { color: #00FFFF; }
                     .baranmuzu { color: #00FF00; }
                     .char { color: #FF8800; }
+
+                    &:hover {
+                        scale: 1.05;
+                        border-top: 2px solid rgba(255, 255, 255, 0.25);
+                        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+                    }
                 }
             }
         }
