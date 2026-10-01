@@ -73,15 +73,26 @@
         }
     }
 
-    async function selectWiki(file) {
+    async function selectWiki(file, redir) {
         const data = await getWikiFile(file);
         currentWiki = file;
         wikiContent = data.content;
+
+        if (redir) {
+            window.location.href = `/wiki?file=${encodeURIComponent(file.replace(".md", ""))}`;
+        }
     }
     
     onMount(async () => {
         wikiList = await getWikiList();
         loaded = get_loaded();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const wikiParam = urlParams.get('file');
+
+        if (wikiParam) {
+            await selectWiki(wikiParam + ".md", false);
+        }
     });
 </script>
 
@@ -98,7 +109,7 @@
             {:else}
                 <div class="fileList">
                     {#each wikiList as file}
-                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file)}>
+                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file, true)}>
                             {file.replace('.md', '')}
                         </button>
                     {/each}

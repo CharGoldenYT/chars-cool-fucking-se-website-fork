@@ -53,14 +53,25 @@
         }
     }
 
-    async function selectNews(file) {
+    async function selectNews(file, redir) {
         const data = await getNewsFile(file);
         currentNews = file;
         newsMarkdown = data.content;
+
+        if (redir) {
+            window.location.href = `/news?file=${encodeURIComponent(file.replace(".md", ""))}`;
+        }
     }
     
     onMount(async () => {
         newsList = await getNews();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsParam = urlParams.get('file');
+
+        if (newsParam) {
+            await selectNews(newsParam + ".md", false);
+        }
     });
 </script>
 
@@ -77,7 +88,7 @@
             {:else}
                 <div class="fileList">
                     {#each newsList as article}
-                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file)}>
+                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file, true)}>
                             {article.file.replace('.md', '')}
                         </button>
                     {/each}
