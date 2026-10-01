@@ -23,12 +23,13 @@
     
     let wikiContent = $state(''); 
     let wikiList = $state([]);
+    let currentWiki = $state('');
 
     let loaded = $state();
 
     function get_loaded()
     {
-        let loaded = 'Welcome to the Solar Engine Wiki ';
+        let loaded = 'Welcome to the Solar Engine Wiki. ';
 
         if (window.innerWidth <= 768)
         {
@@ -39,7 +40,7 @@
             loaded += 'Click/Tap on the articles to the left to view them! ';
         }
 
-        loaded += '<br/>Just note, the example code looks to be broken, don\'t blame us!';
+        loaded += '<br/>Just note, the example code looks to be broken, don\'t blame us! Just refresh the page.';
 
         return loaded;
     }
@@ -72,14 +73,26 @@
         }
     }
 
-    async function selectWiki(file) {
+    async function selectWiki(file, redir) {
         const data = await getWikiFile(file);
+        currentWiki = file;
         wikiContent = data.content;
+
+        if (redir) {
+            window.location.href = `/wiki?file=${encodeURIComponent(file.replace(".md", ""))}`;
+        }
     }
     
     onMount(async () => {
         wikiList = await getWikiList();
         loaded = get_loaded();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const wikiParam = urlParams.get('file');
+
+        if (wikiParam) {
+            await selectWiki(wikiParam + ".md", false);
+        }
     });
 </script>
 
@@ -87,8 +100,8 @@
     <Topbar page={page}/>
 
     <div class="main">
-        <div class="sidebar background">
-            <h3>Wiki</h3>
+        <div class="sidebar">
+            <h3>Wiki <span class="small">scrollable...</span></h3>
             {#if loadList}
                 <p>Loading...</p>
             {:else if errorList}
@@ -96,7 +109,7 @@
             {:else}
                 <div class="fileList">
                     {#each wikiList as file}
-                        <button class="fileButton" onclick={() => selectWiki(file)}>
+                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file, false)}>
                             {file.replace('.md', '')}
                         </button>
                     {/each}
@@ -104,7 +117,7 @@
             {/if}
         </div>
 
-        <div class="content background">
+        <div class="content">
             {#if loadFile}
                 <p>Loading content...</p>
             {:else if errorFile}
@@ -132,14 +145,16 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
-        @media screen and (max-width: 768px) { flex-direction: column; }
+        padding: 10px;
+        @media screen and (max-width: 768px) { flex-direction: column; padding-top: 75px; }
 
         .sidebar {
             min-width: 250px;
             padding: 15px;
             overflow-y: auto;
-            @media screen and (min-width: 768px) { border-right: 1px solid var(--border); }
             background-color: rgba(255, 255, 255, 0.025);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
 
             h3 { margin-top: 0; }
 
@@ -157,12 +172,17 @@
                     padding: 8px;
                     cursor: pointer;
                     transition: 0.2s;
-                    border-radius: 4px;
+                    border-radius: 10px;
                     font-family: funkin;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.2);
                     }
+                }
+
+                .active {
+                    border-left: 2px solid white;
+                    border-right: 2px solid white;
                 }
             }
         }
@@ -171,12 +191,16 @@
             flex: 3;
             padding: 20px;
             overflow-y: auto;
+            @media screen and (min-width: 768px) { padding-top: 75px; }
 
             .prose {
+                overflow-wrap: break-word;
                 :global(h1) { font-size: 2rem; margin-bottom: 1rem; }
                 :global(p) { margin-bottom: 1rem; line-height: 1.6; }
                 :global(code) { background: rgba(0, 0, 0, 0.5); border-radius: 4px; }
                 :global(a) { color: aqua; }
+                :global(hr) { opacity: 0.1; }
+                :global(img) { @media screen and (max-width: 768px) { width: 100%; } }
                 :global(pre) {
                     background: rgba(0, 0, 0, 0.5);
                     border-radius: 4px;
@@ -191,7 +215,7 @@
                     border-radius: 0;
                 }
                 :global(h1, h2, h3, h4, h5, h6) {
-                    border-bottom: 1px solid rgba(255,255, 255, 0.2);
+                    border-bottom: 1px solid rgba(255,255, 255, 0.1);
                     padding-bottom: 0.5rem;
                 }
             }

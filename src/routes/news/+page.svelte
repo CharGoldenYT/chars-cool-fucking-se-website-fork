@@ -23,6 +23,7 @@
     
     let newsMarkdown = $state(''); 
     let newsList = $state([]);
+    let currentNews = $state('');
 
     async function getNews() {
         try {
@@ -52,13 +53,25 @@
         }
     }
 
-    async function selectNews(file) {
+    async function selectNews(file, redir) {
         const data = await getNewsFile(file);
+        currentNews = file;
         newsMarkdown = data.content;
+
+        if (redir) {
+            window.location.href = `/news?file=${encodeURIComponent(file.replace(".md", ""))}`;
+        }
     }
     
     onMount(async () => {
         newsList = await getNews();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsParam = urlParams.get('file');
+
+        if (newsParam) {
+            await selectNews(newsParam + ".md", false);
+        }
     });
 </script>
 
@@ -66,8 +79,8 @@
     <Topbar page={page}/>
 
     <div class="main">
-        <div class="sidebar background">
-            <h3>News</h3>
+        <div class="sidebar">
+            <h3>News <span class="small">scrollable...</span></h3>
             {#if loadGetNews}
                 <p>Loading...</p>
             {:else if errorGetNews}
@@ -75,7 +88,7 @@
             {:else}
                 <div class="fileList">
                     {#each newsList as article}
-                        <button class="fileButton" onclick={() => selectNews(article.file)}>
+                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file, false)}>
                             {article.file.replace('.md', '')}
                         </button>
                     {/each}
@@ -83,7 +96,7 @@
             {/if}
         </div>
 
-        <div class="content background">
+        <div class="content">
             {#if loadNewsFile}
                 <p>Loading content...</p>
             {:else if errorNewsFile}
@@ -111,14 +124,16 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
-        @media screen and (max-width: 768px) { flex-direction: column; }
+        padding: 10px;
+        @media screen and (max-width: 768px) { flex-direction: column; padding-top: 75px; }
 
         .sidebar {
             min-width: 250px;
             padding: 15px;
             overflow-y: auto;
-            @media screen and (min-width: 768px) { border-right: 1px solid var(--border); }
             background-color: rgba(255, 255, 255, 0.025);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
 
             h3 { margin-top: 0; }
 
@@ -136,12 +151,17 @@
                     padding: 8px;
                     cursor: pointer;
                     transition: 0.2s;
-                    border-radius: 4px;
+                    border-radius: 10px;
                     font-family: funkin;
 
                     &:hover {
                         background: rgba(0, 0, 0, 0.2);
                     }
+                }
+
+                .active {
+                    border-left: 2px solid white;
+                    border-right: 2px solid white;
                 }
             }
         }
@@ -150,15 +170,31 @@
             flex: 3;
             padding: 20px;
             overflow-y: auto;
+            @media screen and (min-width: 768px) { padding-top: 75px; }
 
             .prose {
+                overflow-wrap: break-word;
                 :global(h1) { font-size: 2rem; margin-bottom: 1rem; }
                 :global(p) { margin-bottom: 1rem; line-height: 1.6; }
                 :global(code) { background: rgba(0, 0, 0, 0.5); border-radius: 4px; }
                 :global(a) { color: aqua; }
-
+                :global(hr) { opacity: 0.1; }
+                :global(img) { @media screen and (max-width: 768px) { width: 100%; } }
+                :global(pre) {
+                    background: rgba(0, 0, 0, 0.5);
+                    border-radius: 4px;
+                    padding: 15px;
+                    margin-bottom: 1rem;
+                    overflow-x: auto;
+                    white-space: pre;
+                }
+                :global(pre code) {
+                    background: none;
+                    padding: 0;
+                    border-radius: 0;
+                }
                 :global(h1, h2, h3, h4, h5, h6) {
-                    border-bottom: 1px solid rgba(255,255, 255, 0.2);
+                    border-bottom: 1px solid rgba(255,255, 255, 0.1);
                     padding-bottom: 0.5rem;
                 }
             }

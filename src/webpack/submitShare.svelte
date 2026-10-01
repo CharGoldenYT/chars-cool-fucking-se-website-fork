@@ -56,12 +56,13 @@
     main {
         button, input {
             background-color: rgba(0, 0, 0, 0.25);
-            border: 2px solid rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
             color: white;
             font-family: funkin;
-            border-radius: 5px;
+            border-radius: 20px;
             outline: none;
-            &:hover, &:focus { border: 2px solid var(--primary); }
+            transition: all 150ms ease-in-out;
+            &:hover, &:focus { border-left: 2px solid var(--primary); border-right: 2px solid var(--primary); }
         } button {
             padding: 10px 15px;
         } input {
@@ -73,9 +74,9 @@
         .modal {
             padding: 10px 15px;
             background-color: rgba(0, 0, 0, 0.25);
-            border: 2px solid rgba(0, 0, 0, 0.5);
+            border-top: 2px solid rgba(255, 255, 255, 0.05);
             color: white;
-            border-radius: 5px;
+            border-radius: 20px;
 
             display: flex;
             flex-direction: column;

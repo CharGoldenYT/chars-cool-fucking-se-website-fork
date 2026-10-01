@@ -25,7 +25,7 @@
 <main>
     <Topbar page={page}/>
     
-    <div class="main background">
+    <div class="main">
         <div class="header">
             <span class="bigText">Community Shared Mods/Scripts</span>
             <span>This is where you can share your mods, or scripts, to the solar engine website!</span>
@@ -52,6 +52,7 @@
     }
     
     .main {
+        padding-top: 6rem;
         display: flex;
         flex-direction: column;
         gap: 25px;
