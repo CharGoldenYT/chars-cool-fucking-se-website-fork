@@ -88,7 +88,7 @@
             {:else}
                 <div class="fileList">
                     {#each newsList as article}
-                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file, true)}>
+                        <button class:active={currentNews === article.file} class="fileButton" onclick={() => selectNews(article.file, false)}>
                             {article.file.replace('.md', '')}
                         </button>
                     {/each}

@@ -109,7 +109,7 @@
             {:else}
                 <div class="fileList">
                     {#each wikiList as file}
-                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file, true)}>
+                        <button class:active={currentWiki === file} class="fileButton" onclick={() => selectWiki(file, false)}>
                             {file.replace('.md', '')}
                         </button>
                     {/each}
