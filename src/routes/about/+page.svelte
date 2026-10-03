@@ -7,7 +7,7 @@ const page = 'about engine';
     <Topbar page={page}/>
 
     <div class="hero">
-        <div class="main">
+        <div class="main" style="margin-left: 25vw; margin-right: 25vw; color: #FF8800 background-color: #B8B8B8">
             Solar Engine is a from "scratch" engine built on top of Base 0.2.8 (The Newgrounds preview.)
 
             As of right now the only published version is a fork of Psych 0.6.3 that adds modcharting, as well as backports some features (like note rgb coloring) from 0.7+ <br>
