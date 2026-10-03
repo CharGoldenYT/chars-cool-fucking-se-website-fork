@@ -48,8 +48,6 @@ const page = 'about engine';
         border-top: 1px solid var(--border);
     }
     .pad { padding: 10px; }
-    @keyframes backdropillusion {
-    to { background-position: top 118px left 118px; }
 }
 
 .hero {
@@ -87,5 +85,7 @@ const page = 'about engine';
         background: url('/assets/checkers.png');
         animation: backdropillusion 5s linear infinite;
     }
+    @keyframes backdropillusion {
+    to { background-position: top 118px left 118px; }
 }
 </style>
